@@ -1,4 +1,5 @@
 const API_BASE = 'api';
+const API_SECRET = 'vibe-secret-key-2026';
 let currentPage = 1;
 let currentCategory = '';
 let deleteTargetId = null;
@@ -186,7 +187,10 @@ async function handleSubmit(e) {
     try {
         const res = await fetch(`${API_BASE}/${endpoint}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'X-API-KEY': API_SECRET
+            },
             body: JSON.stringify(payload)
         });
 
@@ -221,7 +225,10 @@ async function generateAIDescription() {
     try {
         const res = await fetch(`${API_BASE}/generate_desc.php`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'X-API-KEY': API_SECRET
+            },
             body: JSON.stringify({ term })
         });
 
@@ -261,7 +268,10 @@ async function confirmDelete() {
     try {
         const res = await fetch(`${API_BASE}/delete_term.php`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'X-API-KEY': API_SECRET
+            },
             body: JSON.stringify({ id: deleteTargetId })
         });
 

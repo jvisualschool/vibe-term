@@ -10,6 +10,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 require_once '../config.php';
 
+// 간단한 API 보안 체크
+$headers = getallheaders();
+$apiKey = $headers['X-API-KEY'] ?? '';
+
+if ($apiKey !== API_SECRET) {
+    echo json_encode(['status' => 'error', 'message' => '인증되지 않은 접근입니다.']);
+    exit;
+}
+
 $input = json_decode(file_get_contents('php://input'), true);
 $id = intval($input['id'] ?? 0);
 
