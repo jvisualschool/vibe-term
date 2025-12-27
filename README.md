@@ -2,7 +2,6 @@
 
 비전공자 바이브코더를 위한 쉽고 명확한 개발 용어 사전입니다. PHP와 MySQL을 기반으로 하며, Gemini AI를 활용하여 용어 설명을 생성하고 관리합니다.
 
-![VIBETERM Screenshot](splash.jpg)
 
 ## 🚀 주요 기능
 
