@@ -1,6 +1,10 @@
 <?php
 require_once 'config.php';
 
+if (php_sapi_name() !== 'cli') {
+    die('This script can only be run via CLI.');
+}
+
 $pdo = getDB();
 
 // 설명이 없는 용어 10개 가져오기

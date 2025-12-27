@@ -31,7 +31,6 @@
 
         <div class="search-section">
             <input type="text" id="searchInput" placeholder="용어 검색..." autocomplete="off">
-            <button id="addNewBtn" class="btn-primary">+ 새 용어 추가</button>
         </div>
 
         <div class="category-tabs" id="categoryTabs">
@@ -58,45 +57,7 @@
         </footer>
     </div>
 
-    <!-- 추가/수정 모달 -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle">새 용어 추가</h2>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
-            </div>
-            <form id="termForm">
-                <input type="hidden" id="termId">
-                <div class="form-group">
-                    <label for="termInput">용어 *</label>
-                    <div class="input-with-btn">
-                        <input type="text" id="termInput" required placeholder="예: API, REST, Promise">
-                        <button type="button" id="aiBtn" class="btn-ai">AI 설명 생성</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="descInput">설명</label>
-                    <textarea id="descInput" rows="6" placeholder="초보자를 위한 쉬운 설명..."></textarea>
-                </div>
-                <div class="form-actions">
-                    <button type="button" class="btn-secondary" onclick="closeModal()">취소</button>
-                    <button type="submit" class="btn-primary">저장</button>
-                </div>
-            </form>
-        </div>
-    </div>
 
-    <!-- 삭제 확인 모달 -->
-    <div id="deleteModal" class="modal">
-        <div class="modal-content modal-small">
-            <h3>정말 삭제하시겠습니까?</h3>
-            <p id="deleteTermName"></p>
-            <div class="form-actions">
-                <button class="btn-secondary" onclick="closeDeleteModal()">취소</button>
-                <button class="btn-danger" onclick="confirmDelete()">삭제</button>
-            </div>
-        </div>
-    </div>
 
     <!-- 스플래시 모달 -->
     <div id="splashModal" class="modal splash-modal" onclick="closeSplashModal()">

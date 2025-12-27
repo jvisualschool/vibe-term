@@ -4,3 +4,12 @@ SERVER_INFO.md
 token_usage.json
 node_modules/
 .env
+*.pem
+*.key
+*.sql
+*.log
+server/admin.html
+server/admin.js
+.vscode/
+.idea/
+

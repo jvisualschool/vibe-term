@@ -1,6 +1,10 @@
 <?php
 require_once 'config.php';
 
+if (php_sapi_name() !== 'cli') {
+    die('This script can only be run via CLI.');
+}
+
 $terms = [
     '네트워크 & 인프라' => ['IP', 'DNS', '도메인', 'HTTP', 'HTTPS', 'SSL/TLS', '인증서', '포트', 'SSH', 'FTP', 'SCP', 'CDN', '프록시', '방화벽', '대역폭', '호스팅', '클라우드'],
     'AWS' => ['AWS', 'Lightsail', 'Route 53', 'Snapshot', 'Region', '서버리스'],

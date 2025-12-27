@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
@@ -51,5 +51,6 @@ try {
         'totalPages' => ceil($total / $limit)
     ]);
 } catch (Exception $e) {
-    echo json_encode(['status' => 'error', 'message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
+    error_log($e->getMessage());
+    echo json_encode(['status' => 'error', 'message' => '서버 내부 오류가 발생했습니다.']);
 }

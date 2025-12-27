@@ -2,6 +2,15 @@
 header('Content-Type: application/json; charset=utf-8');
 require_once '../config.php';
 
+// 간단한 API 보안 체크
+$headers = getallheaders();
+$apiKey = $headers['X-API-KEY'] ?? ($_GET['apiKey'] ?? '');
+
+if ($apiKey !== API_SECRET) {
+    echo json_encode(['status' => 'error', 'message' => '인증되지 않은 접근입니다.']);
+    exit;
+}
+
 $limit = isset($_GET['limit']) ? intval($_GET['limit']) : 10;
 
 $pdo = getDB();
