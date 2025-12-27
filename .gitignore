@@ -7,6 +7,7 @@ node_modules/
 *.pem
 *.key
 *.sql
+!vibeterm.sql
 *.log
 server/admin.html
 server/admin.js
