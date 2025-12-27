@@ -8,6 +8,9 @@ define('DB_PASS', 'your_password');
 // Gemini API 키
 define('GEMINI_API_KEY', 'your_gemini_api_key_here');
 
+// API 보안 키 (관리자 인증용)
+define('API_SECRET', 'your_secret_key_here');
+
 // PDO 연결
 function getDB() {
     try {
