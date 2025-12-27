@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "VIBETERM | 코딩 용어 사전",
+  "version": "1.0",
+  "description": "블로그나 사이트에서 드래그한 텍스트를 VIBETERM 서버로 전송하여 용어 사전을 만듭니다.",
+  "permissions": [
+    "contextMenus",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://jvibeschool.org/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icon.png"
+    }
+  },
+  "icons": {
+    "128": "icon.png"
+  }
+}

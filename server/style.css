@@ -1,0 +1,403 @@
+/* 4가지 테마 시스템 */
+:root {
+    --c-bg-900: 15 23 42;
+    --c-bg-800: 30 41 59;
+    --c-bg-700: 51 65 85;
+    --c-text-white: 255 255 255;
+    --c-text-300: 203 213 225;
+    --c-text-400: 148 163 184;
+    --c-text-500: 100 116 139;
+    --radius: 0.5rem;
+}
+
+.light {
+    --c-bg-900: 255 255 255;
+    --c-bg-800: 248 250 252;
+    --c-bg-700: 226 232 240;
+    --c-text-white: 15 23 42;
+    --c-text-300: 71 85 105;
+    --c-text-400: 100 116 139;
+    --c-text-500: 148 163 184;
+}
+
+.gray {
+    --c-bg-900: 24 24 27;
+    --c-bg-800: 39 39 42;
+    --c-bg-700: 63 63 70;
+    --c-text-white: 250 250 250;
+    --c-text-300: 212 212 216;
+    --c-text-400: 161 161 170;
+    --c-text-500: 113 113 122;
+}
+
+.gemini {
+    --c-bg-900: 11 22 40;
+    --c-bg-800: 17 34 64;
+    --c-bg-700: 30 58 95;
+    --c-text-white: 255 255 255;
+    --c-text-300: 200 220 255;
+    --c-text-400: 140 160 200;
+    --c-text-500: 100 120 160;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: rgb(var(--c-bg-900));
+    color: rgb(var(--c-text-white));
+    min-height: 100vh;
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.gemini {
+    background: linear-gradient(135deg, #0b1628, #141e37, #0f192d);
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.header-icon {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+
+.header-icon .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.header-icon .icon1 {
+    opacity: 1;
+}
+
+.header-icon .icon2 {
+    opacity: 0;
+}
+
+.header-icon.swap .icon1 {
+    opacity: 0;
+}
+
+.header-icon.swap .icon2 {
+    opacity: 1;
+}
+
+.header-left {
+    text-align: left;
+    flex: 1;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: rgb(var(--c-text-white));
+}
+
+.gemini header h1 {
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    color: rgb(var(--c-text-400));
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+/* 테마 선택 버튼 */
+.theme-selector {
+    display: flex;
+    gap: 6px;
+    padding: 4px;
+    background: rgb(var(--c-bg-800) / 0.5);
+    border-radius: 9999px;
+    border: 1px solid rgb(var(--c-bg-700) / 0.5);
+}
+
+.theme-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+}
+
+.theme-btn.active {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.theme-btn[data-theme="dark"] {
+    background: linear-gradient(135deg, #1e293b, #334155);
+}
+
+.theme-btn[data-theme="light"] {
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+}
+
+.theme-btn[data-theme="gray"] {
+    background: linear-gradient(135deg, #27272a, #3f3f46);
+}
+
+.theme-btn[data-theme="gemini"] {
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+}
+
+.search-section {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 12px 16px;
+    background: rgb(var(--c-bg-800));
+    border: 1px solid rgb(var(--c-bg-700) / 0.5);
+    border-radius: var(--radius);
+    color: rgb(var(--c-text-white));
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#searchInput:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+#searchInput::placeholder {
+    color: rgb(var(--c-text-500));
+}
+
+.gemini #searchInput {
+    background: rgba(17, 34, 64, 0.8);
+    border-color: rgba(96, 165, 250, 0.3);
+}
+
+.gemini #searchInput:focus {
+    border-color: rgba(155, 114, 203, 0.6);
+    box-shadow: 0 0 0 3px rgba(155, 114, 203, 0.2);
+}
+
+.btn-primary {
+    padding: 12px 20px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    background: #2563eb;
+}
+
+.gemini .btn-primary {
+    background: linear-gradient(135deg, #4285f4, #9b72cb, #d96570);
+    box-shadow: 0 4px 15px rgba(155, 114, 203, 0.4);
+}
+
+.gemini .btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(155, 114, 203, 0.6);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    padding: 10px 16px;
+    background: rgb(var(--c-bg-800));
+    color: rgb(var(--c-text-white));
+    border: 1px solid rgb(var(--c-bg-700) / 0.5);
+    border-radius: var(--radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+    background: rgb(var(--c-bg-700));
+}
+
+.btn-danger {
+    padding: 10px 16px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+.terms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.term-card {
+    background: rgb(var(--c-bg-800));
+    border: 1px solid rgb(var(--c-bg-700) / 0.5);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.term-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.gemini .term-card {
+    background: rgba(30, 58, 95, 0.6);
+    border-color: rgba(96, 165, 250, 0.2);
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.1), inset 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.term-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.term-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgb(var(--c-text-white));
+}
+
+.term-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.term-actions button {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    background: rgb(var(--c-bg-700) / 0.5);
+    border: 1px solid rgb(var(--c-bg-700));
+    color: rgb(var(--c-text-400));
+    border-radius: calc(var(--radius) - 2px);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.term-actions button:hover {
+    background: rgb(var(--c-bg-700));
+    color: rgb(var(--c-text-white));
+}
+
+.term-actions .delete-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.term-desc {
+    color: rgb(var(--c-text-400));
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.term-meta {
+    font-size: 0.75rem;
+    color: rgb(var(--c-text-500));
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgb(var(--c-text-400));
+}
+
+.empty-state p {
+    font-size: 1rem;
+}
+
+
+/* 카테고리 탭 */
+.category-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgb(var(--c-bg-700) / 0.5);
+}
+
+.tab-btn {
+    padding: 8px 16px;
+    background: rgb(var(--c-bg-800));
+    border: 1px solid rgb(var(--c-bg-700) / 0.5);
+    border-radius: 9999px;
+    color: rgb(var(--c-text-400));
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tab-count {
+    font-size: 0.75em;
+    opacity: 0.7;
+}
+
+.tab-btn:hover {
+    background: rgb(var(--c-bg-700));
+    color: rgb(var(--c-text-white));
+}
+
+.tab-btn.active {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    color: white;
+}
+
+.gemini .tab-btn.active {
+    background: linear-gradient(135deg, #4285f4, #9b72cb);
+    border-color: transparent;
+}

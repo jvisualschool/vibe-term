@@ -1,0 +1,34 @@
+<?php
+require_once 'config.php';
+
+$terms = [
+    '네트워크 & 인프라' => ['IP', 'DNS', '도메인', 'HTTP', 'HTTPS', 'SSL/TLS', '인증서', '포트', 'SSH', 'FTP', 'SCP', 'CDN', '프록시', '방화벽', '대역폭', '호스팅', '클라우드'],
+    'AWS' => ['AWS', 'Lightsail', 'Route 53', 'Snapshot', 'Region', '서버리스'],
+    '리눅스 & 서버' => ['리눅스', 'Ubuntu', '쉘', 'Bash', '터미널', 'sudo', 'apt', 'cron', 'top', 'htdocs', '로그', '백업'],
+    '웹 서버' => ['아파치', '웹서버', '가상호스트', 'htaccess', '리다이렉트', 'Rewrite', 'LAMP', 'MIME 타입', 'DocumentRoot', '리버스 프록시'],
+    '데이터베이스' => ['MySQL', 'SQL', 'SELECT', 'INSERT', 'UPDATE', 'DELETE', '테이블', '컬럼', '행/레코드', '기본키', '외래키', '인덱스', '조인', '트랜잭션', '마이그레이션'],
+    '프로그래밍 언어 & 프레임워크' => ['PHP', 'Python', 'JavaScript', 'HTML', 'CSS', 'Node.js', 'React', 'Flask', 'Bootstrap', 'WordPress', 'JSON', 'REST API', 'API', 'npm', 'Webpack', '라이브러리', '프레임워크', '모듈', '패키지', '의존성', 'SDK', 'CLI', 'GUI', '변수', '함수', '클래스', '객체'],
+    '프론트엔드 & UI/UX' => ['프론트엔드', '백엔드', '풀스택', '반응형', '모바일 퍼스트', 'UI', 'UX', '디자인 시스템', '컴포넌트', '레이아웃', '그리드', 'Flexbox', '미디어쿼리', '뷰포트', '접근성', 'SEO', '메타태그', '파비콘', '폰트', '아이콘'],
+    '개발 도구 & 버전 관리' => ['Git', 'GitHub', '리포지토리', '커밋', '푸시', '풀', '브랜치', '머지', '클론', 'Fork', 'Pull Request', 'Issue', 'README', '.gitignore', 'Star', '디버깅', '테스트', '배포', '오픈소스', '라이선스'],
+    '보안 & 인증' => ['암호화', '해시', '토큰', '세션', '쿠키', 'CORS', 'XSS', 'SQL Injection'],
+    '성능 & 최적화' => ['캐싱', '압축', 'Gzip', '최적화', '렌더링', '번들링', 'Lazy Loading'],
+    '미디어 & 특수 기술' => ['FFmpeg', 'Video Compressor', 'Gemini API', 'AI', 'ASCII Art', 'Procreate', '이미지 생성', '텍스트 처리', '파일 업로드', '스트리밍', '인코딩', '디코딩', '해상도', '비트레이트'],
+    '플랫폼 & 통합' => ['macOS', 'SMS', 'ZOOM', 'Markdown', 'RSS', 'Webhook']
+];
+
+$pdo = getDB();
+$stmt = $pdo->prepare("INSERT INTO terms (term, category) VALUES (?, ?)");
+
+$count = 0;
+foreach ($terms as $category => $termList) {
+    foreach ($termList as $term) {
+        try {
+            $stmt->execute([$term, $category]);
+            $count++;
+        } catch (Exception $e) {
+            echo "Skip: $term (already exists)\n";
+        }
+    }
+}
+
+echo "Imported: $count terms\n";
